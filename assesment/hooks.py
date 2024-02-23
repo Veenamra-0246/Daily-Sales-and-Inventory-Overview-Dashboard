@@ -1,9 +1,9 @@
 app_name = "assesment"
 app_title = "assesment"
-app_publisher = "assesment"
-app_description = "assesment"
-app_email = "asesment"
-app_license = "assesment"
+app_publisher = "veenamra"
+app_description = "assesment "
+app_email = "assesment@yopmail.com"
+app_license = "dhskfhsf"
 
 # Includes in <head>
 # ------------------
