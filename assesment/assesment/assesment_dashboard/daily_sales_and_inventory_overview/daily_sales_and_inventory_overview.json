@@ -1,0 +1,38 @@
+{
+ "cards": [
+  {
+   "card": "Total Purchase Before Tax"
+  },
+  {
+   "card": "Purchase Tax Collected"
+  },
+  {
+   "card": "Average Transaction Value"
+  },
+  {
+   "card": "Total Items Purchased"
+  }
+ ],
+ "charts": [
+  {
+   "chart": "Top 5 customers used for selling-1",
+   "width": "Half"
+  },
+  {
+   "chart": "Stock Quantity Changes over time-1",
+   "width": "Half"
+  }
+ ],
+ "creation": "2024-02-27 14:03:24.647011",
+ "dashboard_name": "Daily Sales and Inventory Overview",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2024-02-27 14:03:24.647011",
+ "modified_by": "Administrator",
+ "module": "assesment",
+ "name": "Daily Sales and Inventory Overview",
+ "owner": "Administrator"
+}

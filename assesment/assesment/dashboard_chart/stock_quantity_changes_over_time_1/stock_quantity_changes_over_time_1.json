@@ -1,0 +1,37 @@
+{
+ "chart_name": "Stock Quantity Changes over time-1",
+ "chart_type": "Report",
+ "creation": "2024-02-27 11:34:07.907876",
+ "custom_options": "{\"x_field\": \"posting_date\", \"chart_type\": \"Bar\", \"y_axis_fields\": [{\"idx\": 1, \"__islocal\": true, \"name\": \"row 1\", \"y_field\": \"stock_added\", \"color\": \"#496e91\"}, {\"idx\": 2, \"__islocal\": true, \"name\": \"row 2\", \"y_field\": \"stock_deducted\", \"color\": \"#ECAD4B\"}], \"y_fields\": [\"stock_added\", \"stock_deducted\"], \"colors\": [\"#496e91\", \"#ECAD4B\"]}",
+ "docstatus": 0,
+ "doctype": "Dashboard Chart",
+ "filters_json": "{}",
+ "group_by_type": "Count",
+ "idx": 0,
+ "is_public": 0,
+ "is_standard": 1,
+ "modified": "2024-02-27 16:03:08.720139",
+ "modified_by": "Administrator",
+ "module": "assesment",
+ "name": "Stock Quantity Changes over time-1",
+ "number_of_groups": 0,
+ "owner": "Administrator",
+ "report_name": "Stock Quantity changes over time",
+ "roles": [],
+ "time_interval": "Yearly",
+ "timeseries": 0,
+ "timespan": "Last Year",
+ "type": "Line",
+ "use_report_chart": 0,
+ "x_field": "posting_date",
+ "y_axis": [
+  {
+   "color": "#496e91",
+   "y_field": "stock_added"
+  },
+  {
+   "color": "#ECAD4B",
+   "y_field": "stock_deducted"
+  }
+ ]
+}

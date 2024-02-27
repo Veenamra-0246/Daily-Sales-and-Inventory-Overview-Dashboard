@@ -1,0 +1,38 @@
+{
+ "cards": [
+  {
+   "card": "Total Purchase Before Tax"
+  },
+  {
+   "card": "Purchase Tax Collected"
+  },
+  {
+   "card": "Average Transaction Value"
+  },
+  {
+   "card": "Total Items Purchased"
+  }
+ ],
+ "charts": [
+  {
+   "chart": "Top 5 customers used for selling-1",
+   "width": "Half"
+  },
+  {
+   "chart": "Stock Quantity Changes over time-1",
+   "width": "Half"
+  }
+ ],
+ "creation": "2024-02-23 18:07:46.476383",
+ "dashboard_name": "New Numbers",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2024-02-27 11:34:31.496019",
+ "modified_by": "Administrator",
+ "module": "assesment",
+ "name": "New Numbers",
+ "owner": "Administrator"
+}
