@@ -13,7 +13,7 @@
  "is_standard": 1,
  "label": "Purchase Tax Collected ",
  "method": "assesment.api.get_purchase_tax_collected",
- "modified": "2024-02-26 14:13:42.006879",
+ "modified": "2024-02-29 12:26:33.230867",
  "modified_by": "Administrator",
  "module": "assesment",
  "name": "Purchase Tax Collected",

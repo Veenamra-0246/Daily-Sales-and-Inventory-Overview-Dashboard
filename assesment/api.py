@@ -1,121 +1,75 @@
 import frappe
-
 @frappe.whitelist()
 def get_total_purchase_before_tax():
-    total = frappe.db.sql("""
-        SELECT SUM(grand_total) AS total_purchase_before_tax
-        FROM `tabPurchase Invoice`
-    """, as_dict=True)
-
-    return total[0].get('total_purchase_before_tax') or 0
-
+    total = frappe.get_all("Purchase Invoice",
+                           filters ={"docstatus": 1},
+                           fields=["SUM(grand_total) AS total"]
+                           )
+    total_purchase_before_tax =total[0].get('total') 
+    if total_purchase_before_tax is not None:
+        return total_purchase_before_tax
+    else:
+        return 0
+    
 @frappe.whitelist()
 def get_purchase_tax_collected():
-    total = frappe.db.sql("""
-        SELECT SUM(total_taxes_and_charges) AS purchase_tax_collected
-        FROM `tabPurchase Invoice`
-    """, as_dict=True)
-
-    return total[0].get('purchase_tax_collected') or 0
-
-# @frappe.whitelist()
-# def get_average_transaction_value():
-#     total_sales = frappe.db.sql("""
-#         SELECT SUM(grand_total) AS total_sales
-#         FROM `tabSales Invoice`
-#     """, as_dict=True)[0].get('total_sales') or 0
-
-#     total_count = frappe.db.sql("""
-#         SELECT COUNT(name) AS total_count
-#         FROM `tabSales Invoice`
-#     """, as_dict=True)[0].get('total_count') or 1  
-
-#     average = total_sales / total_count
-#     formatted_average = round(average,2)
-
-#     return formatted_average
+    total = frappe.get_all("Purchase Invoice",
+                           filters ={"docstatus": 1},
+                           fields=["SUM(total_taxes_and_charges) AS total"]
+                           )
+    purchase_tax_collected=total[0].get('total') 
+    if purchase_tax_collected is not None:
+        return purchase_tax_collected
+    else:
+        return 0
 
 @frappe.whitelist()
 def get_average_transaction_value():
-    total_sales = frappe.db.sql("""
-        SELECT SUM(grand_total) AS total_sales
-        FROM `tabSales Invoice`
-    """, as_dict=True)[0].get('total_sales') or 0
+    total_sales = frappe.get_all("Sales Invoice",
+                                 filters={"docstatus": 1},
+                                 fields=["SUM(grand_total) AS total"]
+                                 )
+    print("Total Sales : ",total_sales)   
+    total_count = frappe.get_all("Sales Invoice",
+                                 filters={"docstatus": 1},
+                                 fields=["COUNT(name) AS total"]
+                                 )
+    print("Total Count : ",total_count)
+        
+    total_sales_value = total_sales[0].get('total') or 0
+    print("Total Sales value",total_sales_value)
+    # if total_sales_value is not None:
 
-    total_count = frappe.db.sql("""
-        SELECT COUNT(name) AS total_count
-        FROM `tabSales Invoice`
-    """, as_dict=True)[0].get('total_count') or 1
+    # #    return total_sales_value
+    #     print
+    # else :
+    #     total_sales_value = 0
 
-    average = total_sales / total_count
+    total_count_value = total_count[0].get('total') or 1
+    # if total_count_value is not None:
+    #     return total_count_value
+    #     # print("++++++",type(total_count_value))   
+    # else:
+    #     total_count_value = 1 
+    average = total_sales_value / total_count_value
+    print("-----------",average)
+    # print(a,b)
     formatted_average = round(average,2)
+    print("______",formatted_average)
 
     return formatted_average
 
 @frappe.whitelist()
 def get_total_items_purchased():
-    total = frappe.db.sql("""
-        SELECT SUM(total_qty) AS total_items_purchased
-        FROM `tabPurchase Order`
-    """, as_dict=True)
-
-    return total[0].get('total_items_purchased') or 0
-
-# @frappe.whitelist()
-# def get_top_five_customers_used_for_selling():
-#     top_five_customers = frappe.db.sql("""
-#         SELECT customer_name, SUM(grand_total) AS total_sales
-#         FROM `tabSales Invoice`
-#         GROUP BY customer
-#         ORDER BY total_sales DESC
-#         LIMIT 5
-#     """, as_dict=True)
-#     return [(row[0], row[1]) for row in top_five_customers]
-
-# @frappe.whitelist()
-# def get_top_five_customers_used_for_selling():
-#     top_five_customers = frappe.db.sql("""
-#         SELECT customer_name, SUM(grand_total) AS total_sales
-#         FROM `tabSales Invoice`
-#         GROUP BY customer
-#         ORDER BY total_sales DESC
-#         LIMIT 5
-#         """, as_dict=True)
-#     return [(row[0],row[1]) for row in top_five_customers]
-
-def get_top_five_customers_used_for_selling():
-    top_five_customers =frappe.db.sql("""
-        SELECT customer_name, SUM(grand_total) AS total_sales
-        FROM `tabSales Invoice`
-        GROUP BY customer
-        ORDER BY total_sales DESC
-        LIMIT 5
-    """, as_dict=True)
-    return [(row[0],row[1]) for row in top_five_customers]
-
-
-# @frappe.whitelist()
-# def get_datewise_stock_quantity_changes():
-#     stock_changes = frappe.db.sql("""
-#         SELECT posting_date, 
-#                SUM(IF(stock_qty > 0, stock_qty, 0)) AS stock_added, 
-#                SUM(IF(stock_qty < 0, ABS(stock_qty), 0)) AS stock_deducted
-#         FROM `tabStock Ledger Entry`
-#         GROUP BY posting_date
-#         ORDER BY posting_date
-#     """, as_dict=True)
-
-#     return stock_changes
-
-@frappe.whitelist()
-def get_datewise_stock_quantity_changes():
-    stock_changes = frappe.db.sql("""
-        SELECT posting_date,
-            SUM(IF(stock_qty > 0,stock_qty, 0)) AS stock_added
-            SUM(IF(stock_qty < 0, ABS(stock_qty), 0)) AS stock_deducted
-        FROM `tabStock Ledger Entry`
-        GROUP BY posting_date
-        ORDER BY posting_date
-    """, as_dict=True)
-    return stock_changes
+    total=frappe.get_all("Purchase Order",
+                         filters={"docstatus": 1},
+                         fields=["SUM(total_qty) AS total"]
+                         )
     
+    total_items_purchased=total[0].get('total') 
+
+    if total_items_purchased is not None:
+        return total_items_purchased
+    
+    else:
+        return 0
